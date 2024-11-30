@@ -36,12 +36,21 @@ def sum_of_squares(n):
 def sum_of_squares_better(n):
     return sum([i ** 2 for i in range(1, n)])
 
-def sum_of_squares_worse(n):
+def sum_of_squares_odd(n):
     total = 0
     for num in range(1, n):
         if num % 2 == 1 and num > 0:
             total += num ** 2
     return total
+
+def sum_of_squares_single_command(n):
+    return sum(i ** 2 for i in range(1, n) if i % 2 == 1)
+
+# R-1.11 list comprehension syntax
+def comprehension_syntax_list(num):
+    return [2**i for i in range(0,num)]
+
+
 
 
 
@@ -70,8 +79,16 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(sum_of_squares_better(5), 30)
         self.assertEqual(sum_of_squares_better(20), 2470)
 
-    def test_sum_of_squares_worse(self):
-        self.assertEqual(sum_of_squares_worse(10), 165)
+    def test_sum_of_squares_odd(self):
+        self.assertEqual(sum_of_squares_odd(10), 165)
+
+    def test_sum_of_squares_single_command(self):
+        self.assertEqual(sum_of_squares_single_command(10), 165)
+
+    def test_comprehension_syntax_list(self):
+        self.assertEqual(comprehension_syntax_list(9), [1, 2, 4, 8, 16, 32, 64, 128, 256])
+
+
 
 
 
