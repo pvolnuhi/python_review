@@ -50,6 +50,24 @@ def sum_of_squares_single_command(n):
 def comprehension_syntax_list(num):
     return [2**i for i in range(0,num)]
 
+# C-1.14
+def distinct_pair(data: List[int]) -> bool:
+    for i in range(0, len(data)):
+        for n in range(i+1, len(data)):
+            if (data[i] * data[n]) % 2 == 1:
+                return True
+    return False
+
+# C-1.15
+def distinct_nums(data: List[int]) -> bool:
+    for i in range(0, len(data)):
+        for j in range(i+1, len(data)):
+            if data[i] == data[j]:
+                return False
+    return True
+
+def distinct_nums_optimized(data: List[int]) -> bool:
+    return len(data) == len(set(data)) # set() built-in function removes duplicates in a list
 
 
 
@@ -87,6 +105,18 @@ class TestAdd(unittest.TestCase):
 
     def test_comprehension_syntax_list(self):
         self.assertEqual(comprehension_syntax_list(9), [1, 2, 4, 8, 16, 32, 64, 128, 256])
+
+    def test_distinct_pair(self):
+        self.assertEqual(distinct_pair([2, 4, 7, 9]), True)
+        self.assertEqual(distinct_pair([2, 4, 6, 8]), False)
+        self.assertEqual(distinct_pair([2, 4, 6, 7]), False)
+
+    def test_distinct_nums(self):
+        self.assertEqual(distinct_nums([2, 4, 6, 8, 10]), True)
+        self.assertEqual(distinct_nums([2, 4, 2, 8]), False)
+
+    def test_distinct_nums_optimized(self):
+        self.assertEqual(distinct_nums_optimized([2, 4, 6, 8, 10]), True)
 
 
 
